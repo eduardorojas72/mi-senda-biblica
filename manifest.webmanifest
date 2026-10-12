@@ -1,0 +1,14 @@
+{
+  "name": "Mi Senda Bíblica",
+  "short_name": "Mi Senda",
+  "description": "Temas para empezar a leer la Biblia y un registro de tu progreso de lectura.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAF5EC",
+  "theme_color": "#7A4A21",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
