@@ -98,8 +98,8 @@ const TEMAS = [
     pasajes: [
       { ref: "Juan 3:16", libro: "Juan", cap: 3, etiqueta: "El amor de Dios en una frase" },
       { ref: "Salmos 23", libro: "Salmos", cap: 23, etiqueta: "Un salmo de confianza, de los más leídos" },
-      { ref: "Génesis 1", libro: "Génesis", cap: 1, etiqueta: "El relato de la creación" },
-      { ref: "Mateo 5", libro: "Mateo", cap: 5, etiqueta: "El Sermón del Monte, enseñanzas de Jesús" },
+      { ref: "Génesis 1-2", libro: "Génesis", cap: 1, etiqueta: "El relato de la creación" },
+      { ref: "Mateo 5-6", libro: "Mateo", cap: 5, etiqueta: "El Sermón del Monte, enseñanzas de Jesús" },
     ],
   },
   {
