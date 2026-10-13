@@ -1,21 +1,22 @@
 /* ---------------------------------------------------------------
-   TEXTO BÍBLICO — Reina-Valera Antigua (1909), dominio público.
+   TEXTO BÍBLICO — Palabra de Dios para Todos (PDT).
    El texto NO se incluye en el código: se pide en vivo a una API
-   pública que sirve esa traducción, y se cachea en localStorage
-   para poder releer el mismo capítulo sin conexión después.
+   pública (bolls.life) que sirve esta traducción, y se cachea en
+   localStorage para poder releer el mismo capítulo sin conexión
+   después.
 
-   IMPORTANTE: este entorno de desarrollo no tiene salida a internet
-   general, así que este endpoint no se pudo probar en vivo durante
-   la construcción. Verificar una vez desplegado; si el proveedor
-   cambia de forma o de URL, solo hay que ajustar BIBLE_API de abajo.
+   Nota sobre PDT: publicada por el Centro Mundial de Traducción de
+   la Biblia (WBTC), que la ofrece libre de regalías para uso
+   ministerial. No es dominio público en sentido estricto, pero sí
+   de uso libre — a diferencia de RV1960, NVI, NTV o LBLA, que tienen
+   copyright activo y restringido. bolls.life confirmado como
+   proveedor válido para este código (verificado en vivo).
 --------------------------------------------------------------- */
 
 const BIBLE_API = {
-  // bolls.life: API pública, sin API key, usada por varias apps bíblicas
-  // de código abierto. "RVA" = Reina-Valera Antigua (1909).
-  traduccion: "RVA",
+  traduccion: "PDT",
   urlCapitulo: (libroIdx, capitulo) =>
-    `https://bolls.life/get-text/RVA/${libroIdx}/${capitulo}/`,
+    `https://bolls.life/get-text/PDT/${libroIdx}/${capitulo}/`,
 };
 
 const BIBLE_CACHE_KEY = "mi-senda-biblica-textos-v1";

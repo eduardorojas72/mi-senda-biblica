@@ -19,17 +19,25 @@ ver "Notas legales" abajo.
 
 ## Notas legales
 
-- **Texto bíblico**: Reina-Valera Antigua (1909), traducción de **dominio
-  público**, obtenida en vivo vía `js/bible-api.js` (no se incluye el texto
-  en el repositorio). El proveedor está centralizado en una sola constante
+- **Texto bíblico**: Palabra de Dios para Todos (PDT), publicada por el
+  Centro Mundial de Traducción de la Biblia (WBTC), que la ofrece libre de
+  regalías para uso ministerial. No es dominio público en sentido estricto,
+  pero sí de uso libre — a diferencia de RV1960, NVI, NTV o LBLA, que tienen
+  copyright activo y restringido. Se obtiene en vivo vía `js/bible-api.js`
+  desde bolls.life (API pública sin key), no se incluye el texto en el
+  repositorio. El proveedor está centralizado en una sola constante
   (`BIBLE_API` en ese archivo) para poder cambiarlo fácilmente.
-  - **Pendiente de verificar en un entorno con salida a internet**: el
-    endpoint usado (bolls.life) no se pudo probar en vivo durante el
-    desarrollo porque este entorno no tenía acceso general a internet.
-    Confirmar que responde y ajustar el parseo si el formato difiere.
-  - Se evaluó usar una traducción más moderna (ej. Reina-Valera Gómez), pero
-    su estatus de dominio público no está verificado — no usar sin
-    confirmar la licencia primero.
+  - Se intentó primero con Reina-Valera Antigua (1909), dominio público
+    verdadero, pero bolls.life no la tiene en su catálogo. Si aparece en
+    otro proveedor más adelante, vale la pena migrar a esa por ser legalmente
+    más sólida.
+  - Se descartó Reina Valera Gómez (2004): su editor la distribuye libre de
+    reclamar derechos, pero ese estatus no está verificado con la misma
+    solidez que PDT.
+  - Se descartó explícitamente la Traducción del Nuevo Mundo (jw.org/JW
+    Library): es gratuita para lectura personal, pero sus Términos de Uso
+    prohíben reproducirla dentro de otra app/sitio y redistribuirla —
+    tiene copyright activo de Watch Tower.
 - **Contenido editorial** (nombres de temas, descripciones, agrupación de
   libros en "Antiguo/Nuevo Testamento"): redacción original, no tomada de
   JW Library ni de jw.org.

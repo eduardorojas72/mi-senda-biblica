@@ -152,7 +152,7 @@ async function vistaLector(container, libro, capitulo) {
       <a href="javascript:history.back()" class="volver">${icon("chevron-left")} Volver</a>
       <header class="pantalla-header">
         <h1>${libro} ${capitulo}</h1>
-        <p class="muted">Reina-Valera Antigua (1909) · dominio público</p>
+        <p class="muted">Palabra de Dios para Todos (PDT)</p>
       </header>
       <div id="lector-cuerpo" class="lector-cuerpo">
         <p class="muted">Cargando texto…</p>
