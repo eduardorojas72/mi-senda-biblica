@@ -27,20 +27,8 @@ function render() {
   window.scrollTo(0, 0);
 }
 
-function delegarClicksRegistro() {
-  document.getElementById("view-container").addEventListener("click", (e) => {
-    const btn = e.target.closest(".cap-check");
-    if (!btn) return;
-    const libro = btn.dataset.libro;
-    const cap = parseInt(btn.dataset.cap, 10);
-    alternarCapitulo(libro, cap);
-    render();
-  });
-}
-
 window.addEventListener("hashchange", render);
 window.addEventListener("DOMContentLoaded", () => {
-  delegarClicksRegistro();
   render();
 
   if ("serviceWorker" in navigator) {

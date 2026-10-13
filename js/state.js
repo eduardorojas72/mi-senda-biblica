@@ -9,7 +9,7 @@ function estadoVacio() {
   LIBROS.forEach((l) => {
     libros[l.n] = Array(l.cap).fill(false);
   });
-  return { libros, temasVisitados: [] };
+  return { libros, temasVisitados: [], notas: {} };
 }
 
 function cargarEstado() {
@@ -27,6 +27,8 @@ function cargarEstado() {
     base.temasVisitados = Array.isArray(guardado.temasVisitados)
       ? guardado.temasVisitados
       : [];
+    base.notas =
+      guardado.notas && typeof guardado.notas === "object" ? guardado.notas : {};
     return base;
   } catch {
     return estadoVacio();
@@ -53,6 +55,26 @@ function marcarTemaVisitado(temaId) {
     ESTADO.temasVisitados.push(temaId);
     guardarEstado();
   }
+}
+
+function notaVacia() {
+  return { importante: "", investigar: "", practica: "" };
+}
+
+function notaKey(libro, capitulo) {
+  return `${libro}|${capitulo}`;
+}
+
+function obtenerNota(libro, capitulo) {
+  return ESTADO.notas[notaKey(libro, capitulo)] || notaVacia();
+}
+
+function guardarNota(libro, capitulo, campo, valor) {
+  const key = notaKey(libro, capitulo);
+  const actual = ESTADO.notas[key] || notaVacia();
+  actual[campo] = valor;
+  ESTADO.notas[key] = actual;
+  guardarEstado();
 }
 
 function progresoLibro(libro) {

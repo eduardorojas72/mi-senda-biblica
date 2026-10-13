@@ -284,6 +284,61 @@ h1, h2 {
   margin-top: 20px;
 }
 
+.marcar-leido-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-leido {
+  background: var(--accent);
+  color: #fff;
+}
+
+.notas-card {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notas-titulo {
+  font-size: 16px;
+}
+
+.nota-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.nota-campo textarea {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-height: 64px;
+  resize: vertical;
+}
+
+.nota-campo textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
 /* ---------------- Registro de lectura ---------------- */
 
 .bloque-testamento { margin-bottom: 28px; }
@@ -336,6 +391,7 @@ h1, h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .cap-check.hecho {

@@ -146,7 +146,11 @@ function vistaTemaDetalle(temaId) {
 
 async function vistaLector(container, libro, capitulo) {
   capitulo = parseInt(capitulo, 10);
+  const capIdx = capitulo - 1;
   const libroInfo = LIBROS.find((l) => l.n === libro);
+  const leido = libroInfo ? !!ESTADO.libros[libro][capIdx] : false;
+  const nota = obtenerNota(libro, capitulo);
+
   container.innerHTML = `
     <div class="pantalla">
       <a href="javascript:history.back()" class="volver">${icon("chevron-left")} Volver</a>
@@ -158,8 +162,48 @@ async function vistaLector(container, libro, capitulo) {
         <p class="muted">Cargando texto…</p>
       </div>
       ${libroInfo ? renderNavCapitulo(libro, capitulo, libroInfo.cap) : ""}
+
+      <section class="card marcar-leido-card">
+        <button id="marcar-leido" class="btn ${leido ? "btn-leido" : "btn-outline"}" ${libroInfo ? "" : "disabled"}>
+          ${icon(leido ? "check" : "book-open")}
+          <span>${leido ? "Marcado como leído" : "Marcar como leído"}</span>
+        </button>
+      </section>
+
+      <section class="card notas-card">
+        <h2 class="notas-titulo">Mis notas de este capítulo</h2>
+        <label class="nota-campo">
+          <span>Lo más importante de esta lectura</span>
+          <textarea data-campo="importante" placeholder="¿Qué te marcó de este capítulo?">${escapeHtml(nota.importante)}</textarea>
+        </label>
+        <label class="nota-campo">
+          <span>Quiero investigar más sobre...</span>
+          <textarea data-campo="investigar" placeholder="Preguntas o temas para profundizar">${escapeHtml(nota.investigar)}</textarea>
+        </label>
+        <label class="nota-campo">
+          <span>Lo pondré en práctica</span>
+          <textarea data-campo="practica" placeholder="Una acción concreta para esta semana">${escapeHtml(nota.practica)}</textarea>
+        </label>
+      </section>
     </div>
     ${renderNav("")}`;
+
+  const btnLeido = document.getElementById("marcar-leido");
+  if (libroInfo) {
+    btnLeido.addEventListener("click", () => {
+      alternarCapitulo(libro, capIdx);
+      const nuevoLeido = ESTADO.libros[libro][capIdx];
+      btnLeido.classList.toggle("btn-leido", nuevoLeido);
+      btnLeido.classList.toggle("btn-outline", !nuevoLeido);
+      btnLeido.innerHTML = `${icon(nuevoLeido ? "check" : "book-open")} <span>${nuevoLeido ? "Marcado como leído" : "Marcar como leído"}</span>`;
+    });
+  }
+
+  container.querySelectorAll(".nota-campo textarea").forEach((ta) => {
+    ta.addEventListener("input", () => {
+      guardarNota(libro, capitulo, ta.dataset.campo, ta.value);
+    });
+  });
 
   const resultado = await obtenerCapitulo(libro, capitulo);
   const cuerpo = document.getElementById("lector-cuerpo");
@@ -230,13 +274,13 @@ function renderLibroAcordeon(libro) {
         <span>${libro.n}</span>
         <span class="muted">${p.hechos}/${p.total}</span>
       </summary>
-      <div class="grid-capitulos" data-libro="${escapeHtml(libro.n)}">
+      <div class="grid-capitulos">
         ${checks
           .map(
             (hecho, i) => `
-          <button class="cap-check ${hecho ? "hecho" : ""}" data-libro="${escapeHtml(libro.n)}" data-cap="${i}">
+          <a href="#/leer/${encodeURIComponent(libro.n)}/${i + 1}" class="cap-check ${hecho ? "hecho" : ""}">
             ${hecho ? icon("check") : i + 1}
-          </button>`
+          </a>`
           )
           .join("")}
       </div>
